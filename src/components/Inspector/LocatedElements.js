@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 //import { clipboard } from '../../polyfills';
 import { Input, Row, Col, Button } from 'antd';
-import InspectorStyles from './Inspector.css';
-import { withTranslation } from '../../util';
+import './Inspector.css';
 
 class LocatedElements extends Component {
 
@@ -33,12 +32,12 @@ class LocatedElements extends Component {
     } = this.props;
 
     return <Row>
-      <p className={InspectorStyles['back-link-container']}>
+      <p className='back-link-container'>
         <a onClick={(e) => e.preventDefault() || clearSearchResults()}>{t('back')}</a>
       </p>
       {('elementsCount', {elementCount: locatedElements.length})}
       <Col>
-        <select className={InspectorStyles['locator-search-results']}
+        <select className='locator-search-results'
           multiple='true'
           onChange={(e) => setLocatorTestElement(e.target.value)}
           value={[locatorTestElement]}>
@@ -47,7 +46,7 @@ class LocatedElements extends Component {
           ))}
           {locatedElements.length === 0 && <option disabled>{('couldNotFindAnyElements')}</option>}
         </select>
-        {locatedElements.length > 0 && <div className={InspectorStyles['locator-test-interactions-container']}>
+        {locatedElements.length > 0 && <div className='locator-test-interactions-container'>
           <div>
             <Button size='small'
               disabled={!locatorTestElement}
