@@ -486,3 +486,44 @@
 .ant-alert-content{
     margin-left: 7px;
 }
+
+.ant-card-head-title {
+    display: inline-block;
+    flex: 1;
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ant-card-head-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.anticon{
+    display: inline-block;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -.125em;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+.ant-card-head {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    min-height: 48px;
+    margin-bottom: -1px;
+    padding: 0 24px;
+    margin-left: -24px;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 2px 2px 0 0;
+}
+
