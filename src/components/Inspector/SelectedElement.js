@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import {getLocators} from './shared';
-import styles from './Inspector.css';
+import './Inspector.css';
 import { Button, Row, Col, Input, Modal, Table, Alert, Tooltip, Select } from 'antd';
 import { withTranslation } from '../../util';
 //import {clipboard, shell} from '../../polyfills';
@@ -18,7 +18,7 @@ import { ROW, ALERT } from '../../gui-common/components/AntdTypes';
 const ButtonGroup = Button.Group;
 const NATIVE_APP = 'NATIVE_APP';
 const selectedElementTableCell = (text) => (
-  <div className={styles['selected-element-table-cells']}>{text}</div>);
+  <div className={'selected-element-table-cells'}>{text}</div>);
 
 /**
  * Shows details of the currently selected element and shows methods that can
@@ -47,7 +47,7 @@ class SelectedElement extends Component {
           setContext(value);
           applyClientMethod({methodName: 'switchContext', args: [value]});
         }}
-        className={styles['locator-strategy-selector']}>
+        className={'locator-strategy-selector'}>
           {contexts.map(({id, title}) =>
             <Select.Option key={id} value={id}>{title ? `${title} (${id})` : id}</Select.Option>
           )}

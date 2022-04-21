@@ -358,3 +358,37 @@
  .actions-container :global(.ant-btn) {
     width: 100%;
  }
+
+ .ant-spin-nested-loading, .ant-spin-container {
+    height: 100%;
+  }
+  
+  .ant-notification {
+    width: 80%;
+    margin-right: 10%;
+  }
+  
+  
+
+  .ant-select-selection {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 100%;
+    padding-top: 0;
+  
+  } 
+
+  .ant-select-selection-selected-value {
+    padding-top: 2px;
+  }
+  .ant-select {
+    height: 100%;
+  }
+  .ant-select {
+    height: 100%;
+  }
+  
+  .ant-tabs-tab {
+    font-size: 14px;
+  }
+  

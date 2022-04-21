@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import HighlighterRects from './HighlighterRects';
 import { Spin, Tooltip } from 'antd';
 import B from 'bluebird';
-import styles from './Inspector.css';
+import './Inspector.css';
 import { SCREENSHOT_INTERACTION_MODE } from './shared';
 import { withTranslation } from '../../util';
 
@@ -137,14 +137,14 @@ class Screenshot extends Component {
 
     // Show the screenshot and highlighter rects. Show loading indicator if a method call is in progress.
     return <Spin size='large' spinning={!!methodCallInProgress}>
-      <div className={styles.innerScreenshotContainer}>
+      <div className={'innerScreenshotContainer'}>
         <div ref={(containerEl) => { this.containerEl = containerEl; }}
           style={screenshotStyle}
           onClick={this.handleScreenshotClick.bind(this)}
           onMouseMove={this.handleMouseMove.bind(this)}
           onMouseOut={this.handleMouseOut.bind(this)}
-          className={styles.screenshotBox}>
-          {x !== null && <div className={styles.coordinatesContainer}>
+          className={'screenshotBox'}>
+          {x !== null && <div className={'coordinatesContainer'}>
             <p>{('xCoordinate', {x})}</p>
             <p>{('yCoordinate', {y})}</p>
           </div>}
@@ -152,7 +152,7 @@ class Screenshot extends Component {
           {!swipeInstructions && screenImg}
           {screenshotInteractionMode === SELECT && this.containerEl && <HighlighterRects {...this.props} containerEl={this.containerEl} />}
           {screenshotInteractionMode === SWIPE &&
-            <svg className={styles.swipeSvg}>
+            <svg className={'swipeSvg'}>
               {swipeStart && !swipeEnd && <circle
                 cx={swipeStart.x / scaleRatio}
                 cy={swipeStart.y / scaleRatio}
