@@ -5,7 +5,7 @@ import { Card, Button, Spin, Tooltip, Modal, Tabs } from 'antd';
 import Screenshot from './Screenshot';
 import SelectedElement from './SelectedElement';
 import Source from './Source';
-import InspectorStyles from './Inspector.css';
+import './Inspector.css';
 import {
   FileTextOutlined,
   TagOutlined,
@@ -108,30 +108,30 @@ export default class Inspector extends Component {
            t, visibleCommandResult} = this.props;
     const {path} = selectedElement;
 
-    let main = <div className={InspectorStyles['inspector-main']} ref={(el) => {this.screenAndSourceEl = el;}}>
-      <div id='screenshotContainer' className={InspectorStyles['screenshot-container']}>
+    let main = <div className='inspector-main' ref={(el) => {this.screenAndSourceEl = el;}}>
+      <div id='screenshotContainer' className='screenshot-container'>
         {screenshot && <Screenshot {...this.props} />}
         {!screenshot && !screenshotError &&
           <Spin size="large" spinning={true}>
-            <div className={InspectorStyles.screenshotBox} />
+            <div className='screenshotBox' />
           </Spin>
         }
       </div>
-      <div id='sourceTreeContainer' className={InspectorStyles['interaction-tab-container']} >
+      <div id='sourceTreeContainer' className='interaction-tab-container' >
         <Tabs activeKey={selectedInteractionMode}
           size="small"
           onChange={(tab) => selectInteractionMode(tab)}>
           <TabPane tab={('Source')} key={INTERACTION_MODE.SOURCE}>
             <div className='action-row'>
               <div className='action-col'>
-                <Card title={<span><FileTextOutlined /> {('App Source')}</span>}>
+                <Card title={<span><FileTextOutlined />App Source</span>}>
                   <Source {...this.props} />
                 </Card>
               </div>
               <div id='selectedElementContainer'
-                className={`${InspectorStyles['interaction-tab-container']} ${InspectorStyles['element-detail-container']} action-col`}>
+                className='interaction-tab-container element-detail-container action-col'>
                 <Card title={<span><TagOutlined /> {('selectedElement')}</span>}
-                  className={InspectorStyles['selected-element-card']}>
+                  className='selected-element-card'>
                   {path && <SelectedElement {...this.props}/>}
                   {!path && <i>{('selectElementInSource')}</i>}
                 </Card>
@@ -142,11 +142,11 @@ export default class Inspector extends Component {
       </div>
     </div>;
 
-    const appModeControls = <div className={InspectorStyles['action-controls']}>
+    const appModeControls = <div className='action-controls'>
       
     </div>;
 
-    let actionControls = <div className={InspectorStyles['action-controls']}>
+    let actionControls = <div className='action-controls'>
       
     </div>;
 
@@ -154,14 +154,14 @@ export default class Inspector extends Component {
       
     </ButtonGroup>;
 
-    let controls = <div className={InspectorStyles['inspector-toolbar']}>
+    let controls = <div className='inspector-toolbar'>
       {appModeControls}
       {actionControls}
       {generalControls}
     </div>;
 
     return (<Spin spinning={isFindingElementsTimes} key="main">
-      <div className={InspectorStyles['inspector-container']}>
+      <div className='inspector-container'>
         {controls}
         {main}
         {/* <Modal

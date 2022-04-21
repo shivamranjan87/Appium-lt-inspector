@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Select, Row } from 'antd';
-import InspectorStyles from './Inspector.css';
-import { withTranslation } from '../../util';
+import './Inspector.css';
 
 const { Option } = Select;
 
@@ -48,7 +47,7 @@ class ElementLocator extends Component {
     return <div>
       <Row>
         {'locatorStrategy'}
-        <Select className={InspectorStyles['locator-strategy-selector']}
+        <Select className='locator-strategy-selector'
           onChange={(value) => setLocatorTestStrategy(value)}
           value={locatorTestStrategy}>
           {locatorStrategies.map(([strategyValue, strategyName]) => (
@@ -58,7 +57,7 @@ class ElementLocator extends Component {
       </Row>
       <Row>
         {'selector'}
-        <Input.TextArea className={InspectorStyles['locator-strategy-selector']} onChange={(e) => setLocatorTestValue(e.target.value)} value={locatorTestValue} />
+        <Input.TextArea className='locator-strategy-selector' onChange={(e) => setLocatorTestValue(e.target.value)} value={locatorTestValue} />
       </Row>
     </div>;
   }

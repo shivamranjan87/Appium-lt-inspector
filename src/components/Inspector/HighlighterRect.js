@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import InspectorCSS from './Inspector.css';
+import './Inspector.css';
 import { parseCoordinates } from './shared';
 
 /**
@@ -15,7 +15,7 @@ export default class HighlighterRect extends Component {
     const {path: selectedPath} = selectedElement;
 
     let width, height, left, top, highlighterClasses, key;
-    highlighterClasses = [InspectorCSS['highlighter-box']];
+    highlighterClasses = ['highlighter-box'];
 
     if (element) {
       // Calculate left, top, width and height coordinates
@@ -27,10 +27,10 @@ export default class HighlighterRect extends Component {
 
       // Add class + special classes to hovered and selected elements
       if (hoveredPath === element.path) {
-        highlighterClasses.push(InspectorCSS['hovered-element-box']);
+        highlighterClasses.push('hovered-element-box');
       }
       if (selectedPath === element.path) {
-        highlighterClasses.push(InspectorCSS['inspected-element-box']);
+        highlighterClasses.push('inspected-element-box');
       }
       key = element.path;
     } else if (elLocation && elSize) {
@@ -39,7 +39,7 @@ export default class HighlighterRect extends Component {
       top = elLocation.y / scaleRatio;
       left = elLocation.x / scaleRatio + xOffset;
       key = 'searchedForElement';
-      highlighterClasses.push(InspectorCSS['inspected-element-box']);
+      highlighterClasses.push('inspected-element-box');
     }
 
     return <div className={highlighterClasses.join(' ').trim()}
