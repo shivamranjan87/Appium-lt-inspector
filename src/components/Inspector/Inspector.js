@@ -128,7 +128,7 @@ export default class Inspector extends Component {
                   <Source {...this.props} />
                 </Card>
               </div>
-              <div id='selectedElementContainer'
+              <div id='selectedElementContainer' style={{overflowY:"scroll",height:"600px"}}
                 className='interaction-tab-container element-detail-container action-col'>
                 <Card title={<span><TagOutlined /> {('selectedElement')}</span>}
                   className='selected-element-card'>
