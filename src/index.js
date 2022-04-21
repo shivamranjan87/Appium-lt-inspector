@@ -1,17 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { render } from 'react-dom';
+import Root from './containers/Root';
+//import ErrorBoundary from "./gui-common/components/ErrorBoundary"
+import Store from "./store/configureStore"
+const { history, configureStore } = Store;
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+const store = configureStore();
+
+render(
+  // <ErrorBoundary>
+    <Root store={store} history={history} />
+  // </ErrorBoundary> 
+  ,
+  document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+if (module.hot) {
+  module.hot.accept('./containers/Root', () => {
+    // eslint-disable-next-line global-require
+    const NextRoot = require('./containers/Root').default;
+    render(
+      // <AppContainer>
+        <NextRoot store={store} history={history} />
+     // </AppContainer>
+     ,
+      document.getElementById('root')
+    );
+  });
+}
