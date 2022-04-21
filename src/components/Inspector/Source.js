@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Tree } from 'antd';
 import LocatorTestModal from './LocatorTestModal';
-import InspectorStyles from './Inspector.css';
-import { withTranslation } from '../../util';
+import './Inspector.css';
 
 const IMPORTANT_ATTRS = [
   'name',
@@ -26,15 +25,15 @@ class Source extends Component {
       if (attributes[attr]) {
         attrs.push(<span key={attr}>&nbsp;
           <i
-            className={InspectorStyles.sourceAttrName}
+            className='sourceAttrName'
           >{attr}</i>=<span
-            className={InspectorStyles.sourceAttrValue}
+            className='sourceAttrValue'
           >&quot;{attributes[attr]}&quot;</span>
         </span>);
       }
     }
     return <span>
-      &lt;<b className={InspectorStyles.sourceTag}>{tagName}</b>{attrs}&gt;
+      &lt;<b className='sourceTag'>{tagName}</b>{attrs}&gt;
     </span>;
   }
 
@@ -76,7 +75,7 @@ class Source extends Component {
 
     const treeData = source && recursive(source);
 
-    return <div id='sourceContainer' className={InspectorStyles['tree-container']}>
+    return <div id='sourceContainer' className='tree-container'>
       {source &&
         <Tree
           onExpand={setExpandedPaths}
@@ -89,9 +88,9 @@ class Source extends Component {
       {!source && !sourceError &&
         <i>{('Gathering initial app source…')}</i>
       }
-      {
+      {/* {
         sourceError && ('couldNotObtainSource', {errorMsg: JSON.stringify(sourceError)})
-      }
+      } */}
       <LocatorTestModal {...this.props} />
     </div>;
   }
