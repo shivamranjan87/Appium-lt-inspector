@@ -3,6 +3,7 @@ import { getLocators } from '../components/Inspector/shared';
 import { xmlToJSON } from '../util';
 import { getSetting, SAVED_FRAMEWORK } from '../shared/settings';
 import AppiumClient from '../lib/appium-client';
+import axios from "axios";
 
 export const SET_SESSION_DETAILS = 'SET_SESSION_DETAILS';
 export const SET_SOURCE_AND_SCREENSHOT = 'SET_SOURCE_AND_SCREENSHOT';
@@ -142,50 +143,46 @@ export function unselectHoveredElement (path) {
 /**
  * Requests a method call on appium
  */
-export function applyClientMethod (params) {
+ export function getScreenshotData(){
+
+  return async (dispatch, getState) => {
+
+  var config = {
+    method: 'get',
+    url: 'https://stage-app-api.lambdatest.com/api-gateway/api/v1.0/tree-snapshot?type=tree-snapshot&testid=TES10092401650617490547761',
+    headers: { 
+      'accept': 'application/json, text/plain, */*', 
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8', 
+      'authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzNDJhZDQzYTFlMDZiZjgxMzZhYTYyMWExZDIzMGM1MGFiZGI2Y2RlZGU3NzhhNmQ3MzQ0ODk2MjMyMDFhNThjYmZkYmI3YzUyNGQzZWQwIn0.eyJhdWQiOiI3IiwianRpIjoiMzM0MmFkNDNhMWUwNmJmODEzNmFhNjIxYTFkMjMwYzUwYWJkYjZjZGVkZTc3OGE2ZDczNDQ4OTYyMzIwMWE1OGNiZmRiYjdjNTI0ZDNlZDAiLCJpYXQiOjE2NTAyNjYwMTMsIm5iZiI6MTY1MDI2NjAxMywiZXhwIjoxNjgxODAyMDEzLCJzdWIiOiI2MDIzMCIsInNjb3BlcyI6W10sImlkIjo2MDIzMCwiZW1haWwiOiJzaGl2YW1yQGxhbWJkYXRlc3QuY29tIiwidXNlcm5hbWUiOiJzaGl2YW1yIiwibmFtZSI6IlNoaXZhbSBSYWphbiIsIm9yZ2FuaXphdGlvbl9pZCI6MTE2MTU3LCJvcmdhbml6YXRpb25fcm9sZSI6IkFkbWluIiwiaW50ZXJjb21fdXNlcl9oYXNoIjoiMWRkMTYzMDZkMzYwODFhNjg5MDk2YzRhNDg2YTVlODVmMGMzYmFiODBhYWI0N2ViOTM1YzFkODljNjMzMjhiNCIsImNyZWF0ZWRfYXQiOiIyMDIxLTA0LTI3VDA5OjIxOjA1LjAwMDAwMFoiLCJpc3MiOm51bGx9.cnwGzYYqmwtLVMREJAWfxweO8UKqEJNki4BE912f3jPJNC39JilzpAajPkV-U572PUs6g8aTuz71745BAPH0LQuSL7T72Z-JPwf7qcDuy1DfPRkNzClxr6VYkk4vHuowr-IgZQNcVyGyF3o47Y3owsV53N49wbMPHdVdyTaO7n_q3KC4wp_CT583y7r5OeHqE5ap5pLdVIVfCKaGGeBT53owLqpsPstHMcK5iT5oyFUmHs2vIYUFjs0LfTxyNrHqgkHSiokkAyn_hopYnNsK-UPNhH3LEEGIeEbCgi1l0X7wMS5p1B8_gS6FKAyQeb_2pkSQEBpjoawVicVK23ItEElxBeOeVy66JvV37FS8S0sBdnh9ipTyey87g00ipvS4Qb-hWf9CIJjAZQ15o4i_7ZZ3lQx2ghOpZVvNzFNsnUn0tGTsYJ6AZyKrtG3LpvtOGDEw75-1TJyih8cL3ckU8m6_GsB2GDA5QK5ZaMdw0UhsJ76BpEGNz3vHh6iqTcsyVl_sftA7AHCXY7H5fBARj8h_sC-3hUdeWzJpVI19-4aWkTWdInsc7MMCsrldB-ofgBgrmWrZjHrJm-7exqN00AwraDG1n-DZ8Mg8quu7AlZYSN65hlbGcP0IpRZGs-XAOOQiHikp03wLPuhbCiJki91QOFb7bR14pKYtRdl3z_s', 
+    }
+  };
+  
+  axios(config).then(async function (response) {
+      await dispatch({
+        type: SET_SOURCE_AND_SCREENSHOT,
+        source:xmlToJSON(response.data.message),
+      });
+      console.log("getstate in ss",getState())
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+};
+
+export  function applyClientMethod (params){
   return async (dispatch, getState) => {
 
     try {
       dispatch({type: METHOD_CALL_REQUESTED});
       const callAction = callClientMethod(params);
+      let source=getState().inspector.source;
       let {contexts, contextsError, currentContext, currentContextError,
-             source, screenshot, windowSize, result, sourceError,
+              screenshot, windowSize, result, sourceError,
              screenshotError, windowSizeError, variableName,
              variableIndex, strategy, selector} = await callAction(dispatch, getState);
-      source = `<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
-      <hierarchy index="0" class="hierarchy" rotation="0" width="1080" height="2218">
-      
-      
-        <android.widget.FrameLayout index="0" package="io.appium.android.apis" class="android.widget.FrameLayout" text="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2218]" displayed="true">
-      
-      
-      
-          <android.view.ViewGroup index="0" package="io.appium.android.apis" class="android.view.ViewGroup" text="" resource-id="android:id/decor_content_parent" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,0][1080,2218]" displayed="true">
-            <android.widget.FrameLayout index="0" package="io.appium.android.apis" class="android.widget.FrameLayout" text="" resource-id="android:id/action_bar_container" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,80][1080,227]" displayed="true">
-              <android.view.ViewGroup index="0" package="io.appium.android.apis" class="android.view.ViewGroup" text="" resource-id="android:id/action_bar" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,80][1080,227]" displayed="true">
-                <android.widget.TextView index="0" package="io.appium.android.apis" class="android.widget.TextView" text="API Demos" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[42,118][305,189]" displayed="true" />
-              </android.view.ViewGroup>
-            </android.widget.FrameLayout>
-            <android.widget.FrameLayout index="1" package="io.appium.android.apis" class="android.widget.FrameLayout" text="" resource-id="android:id/content" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,227][1080,2218]" displayed="true">
-              <android.widget.ListView index="0" package="io.appium.android.apis" class="android.widget.ListView" text="" resource-id="android:id/list" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,227][1080,2218]" displayed="true">
-                <android.widget.TextView index="0" package="io.appium.android.apis" class="android.widget.TextView" text="Access'ibility" content-desc="Access'ibility" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,227][1080,353]" displayed="true" />
-                <android.widget.TextView index="1" package="io.appium.android.apis" class="android.widget.TextView" text="Accessibility" content-desc="Accessibility" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,356][1080,482]" displayed="true" />
-                <android.widget.TextView index="2" package="io.appium.android.apis" class="android.widget.TextView" text="Animation" content-desc="Animation" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,485][1080,611]" displayed="true" />
-                <android.widget.TextView index="3" package="io.appium.android.apis" class="android.widget.TextView" text="App" content-desc="App" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,614][1080,740]" displayed="true" />
-                <android.widget.TextView index="4" package="io.appium.android.apis" class="android.widget.TextView" text="Content" content-desc="Content" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,743][1080,869]" displayed="true" />
-                <android.widget.TextView index="5" package="io.appium.android.apis" class="android.widget.TextView" text="Graphics" content-desc="Graphics" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,872][1080,998]" displayed="true" />
-                <android.widget.TextView index="6" package="io.appium.android.apis" class="android.widget.TextView" text="Media" content-desc="Media" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1001][1080,1127]" displayed="true" />
-                <android.widget.TextView index="7" package="io.appium.android.apis" class="android.widget.TextView" text="NFC" content-desc="NFC" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1130][1080,1256]" displayed="true" />
-                <android.widget.TextView index="8" package="io.appium.android.apis" class="android.widget.TextView" text="OS" content-desc="OS" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1259][1080,1385]" displayed="true" />
-                <android.widget.TextView index="9" package="io.appium.android.apis" class="android.widget.TextView" text="Preference" content-desc="Preference" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1388][1080,1514]" displayed="true" />
-                <android.widget.TextView index="10" package="io.appium.android.apis" class="android.widget.TextView" text="Text" content-desc="Text" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1517][1080,1643]" displayed="true" />
-                <android.widget.TextView index="11" package="io.appium.android.apis" class="android.widget.TextView" text="Views" content-desc="Views" resource-id="android:id/text1" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,1646][1080,1772]" displayed="true" />
-              </android.widget.ListView>
-            </android.widget.FrameLayout>
-          </android.view.ViewGroup>
-          <android.view.View index="2" package="io.appium.android.apis" class="android.view.View" text="" resource-id="android:id/navigationBarBackground" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" long-clickable="false" password="false" scrollable="false" selected="false" bounds="[0,2298][1080,2340]" displayed="true" />
-        </android.widget.FrameLayout>
-      </hierarchy>`;
+             console.log("source");
+      source = source;
       console.log("screenshot...", screenshot)
       screenshot = `iVBORw0KGgoAAAANSUhEUgAABDgAAAkkCAYAAAD508+vAAAAAXNSR0IArs4c6QAAAARzQklUCAgI
       CHwIZIgAACAASURBVHic7N13eNRV3v7xezKkNwglgdBCbxGCNAVC79WuCD4g4K5dQEURV0QfVnER

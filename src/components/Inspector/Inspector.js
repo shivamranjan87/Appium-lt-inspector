@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 
 
+
 const { TabPane } = Tabs;
 
 const ButtonGroup = Button.Group;
@@ -61,7 +62,7 @@ export default class Inspector extends Component {
     }
   }
 
-  componentDidMount () {
+  async componentDidMount(){
     const curHeight = window.innerHeight;
     const curWidth = window.innerWidth;
     const needsResize = (curHeight < MIN_HEIGHT) || (curWidth < MIN_WIDTH);
@@ -72,7 +73,13 @@ export default class Inspector extends Component {
       window.resizeTo(newWidth, newHeight);
     }
     this.didInitialResize = true;
-    this.props.applyClientMethod({methodName: 'getPageSource', ignoreResult: true});
+    console.log("getScreenshotData",this.props)
+    // let action = InspectorActions.getScreenshotData()
+    // dispatch(action)
+    await this.props.getScreenshotData();
+    setTimeout(()=>{
+      this.props.applyClientMethod({methodName: 'getPageSource', ignoreResult: true});
+    },1000)
     window.addEventListener('resize', this.updateSourceTreeWidth);
     // this.startSession();
     // let desiredCapabilities = {
@@ -89,7 +96,7 @@ export default class Inspector extends Component {
     // };
     // this.props.startSession(desiredCapabilities)
   }
-
+  
   componentDidUpdate () {
     const {screenshot} = this.props;
     // only update when the screenshot changed, not for any other kind of
@@ -186,3 +193,6 @@ export default class Inspector extends Component {
     </Spin>);
   }
 }
+
+
+

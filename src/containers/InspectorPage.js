@@ -12,10 +12,13 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators(InspectorActions, dispatch);
 }
 
-//export default withTranslation(InspectorPage, connect(mapStateToProps, mapDispatchToProps));
+// function mapDispacthToProps (dispatch) {
+//     return {getScreenshotData: () => dispatch(getScreenshotData())}
+//   };
 
+//export default withTranslation(InspectorPage, connect(mapStateToProps, mapDispatchToProps));
+//export default InspectorPage
 
 export default connect(mapStateToProps, mapDispatchToProps)(InspectorPage)
 
-//export default InspectorPage
 
