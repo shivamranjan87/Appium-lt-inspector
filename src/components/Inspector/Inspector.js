@@ -162,7 +162,7 @@ export default class Inspector extends Component {
 
     return (<Spin spinning={isFindingElementsTimes} key="main">
       <div className='inspector-container'>
-        {controls}
+        {/* {controls} */}
         {main}
         {/* <Modal
           title={t('Session Inactive')}

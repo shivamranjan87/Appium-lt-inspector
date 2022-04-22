@@ -80,36 +80,36 @@
   height: 100%;
 }
 
-.inspector-main :global(.ant-card-head) {
+.inspector-main .ant-card-head {
   max-height: 48px;
 }
 
-.inspector-main :global(.ant-card-body) {
+.inspector-main .ant-card-body {
   height: calc(100% - 48px);
   padding-bottom: 48px;
 }
 
-.inspector-main .interaction-tab-container :global(.ant-tabs) {
+.inspector-main .interaction-tab-container .ant-tabs {
   height: 100%;
 }
 
-.inspector-main .interaction-tab-container :global(.ant-tabs-content) {
+.inspector-main .interaction-tab-container .ant-tabs-content {
   height: 100%;
 }
 
-.inspector-main .interaction-tab-container :global(.action-row) {
+.inspector-main .interaction-tab-container .action-row {
   height: 100%;
 }
-.inspector-main .interaction-tab-container :global(.action-col) {
+.inspector-main .interaction-tab-container .action-col {
   height: 50%;
   padding-left: 0;
 }
 
-.inspector-main .interaction-tab-container :global(.ant-card) {
+.inspector-main .interaction-tab-container .ant-card {
   height: 100%;
 }
 
-.inspector-main .interaction-tab-container :global(.ant-tree) {
+.inspector-main .interaction-tab-container .ant-tree {
   overflow: auto;
 }
 
@@ -122,7 +122,7 @@
   display: none;
 }
 
-.inspector-main .tree-container :global(ul.ant-tree) {
+.inspector-main .tree-container ul.ant-tree {
   height: 100%;
   overflow: auto;
 }
@@ -136,7 +136,7 @@
   padding-bottom: 1em;
 }
 
-.inspector-main .interaction-tab-container .scroll-buttons :global(button) {
+.inspector-main .interaction-tab-container .scroll-buttons button {
   margin: 1em;
 }
 
@@ -157,12 +157,12 @@
   flex: 1;
 }
 
-.inspector-main .recorded-actions :global(.ant-btn-group) {
+.inspector-main .recorded-actions .ant-btn-group {
   margin-left: 10px;
 }
 
-.inspector-main .recorded-actions :global(.ant-card-body),
-.inspector-main .interaction-tab-card :global(.ant-card-body) {
+.inspector-main .recorded-actions .ant-card-body,
+.inspector-main .interaction-tab-card .ant-card-body {
   overflow: scroll;
 }
 
@@ -170,7 +170,7 @@
   flex: 2;
 }
 
-.inspector-main :global(.ant-card-body::-webkit-scrollbar) {
+.inspector-main .ant-card-body::-webkit-scrollbar {
   background: transparent;
   width: 14px;
 }
@@ -222,7 +222,7 @@
   flex-direction: column;
 }
 
-.selected-element-card :global(.ant-card-body) {
+.selected-element-card .ant-card-body {
   flex: 1;
   overflow: auto;
 }
@@ -361,11 +361,11 @@
   padding: 4px 4px 0 0;
 }
 
-.actions-container :global(.ant-select) {
+.actions-container .ant-select {
   width: 100%;
 }
 
-.actions-container :global(.ant-btn) {
+.actions-container .ant-btn {
   width: 100%;
 }
 
