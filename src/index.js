@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Root from './containers/Root';
 //import ErrorBoundary from "./gui-common/components/ErrorBoundary"
 import Store from "./store/configureStore"
+import './index.css';
 const { history, configureStore } = Store;
 
 const store = configureStore();
