@@ -133,6 +133,7 @@ class Screenshot extends Component {
       }
     }
 
+    console.log("screenshot",`data:image/gif;base64,${screenshot}`)
     const screenImg = <img src={`data:image/gif;base64,${screenshot}`} id="screenshot" />;
 
     // Show the screenshot and highlighter rects. Show loading indicator if a method call is in progress.

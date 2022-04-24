@@ -11,8 +11,6 @@ import {
   TagOutlined,
 } from '@ant-design/icons';
 
-
-
 const { TabPane } = Tabs;
 
 const ButtonGroup = Button.Group;
@@ -125,19 +123,20 @@ export default class Inspector extends Component {
         }
       </div>
       <div id='sourceTreeContainer' className='interaction-tab-container' >
-        <Tabs activeKey={selectedInteractionMode}
+        <Tabs
           size="small"
-          onChange={(tab) => selectInteractionMode(tab)}>
-          <TabPane tab={('Source')} key={INTERACTION_MODE.SOURCE}>
+          //onChange={(tab) => selectInteractionMode(tab)}
+          >
+          <TabPane tab={('UI Inspector')}>
             <div className='action-row'>
               <div className='action-col'>
-                <Card title={<span><FileTextOutlined />App Source</span>}>
+                <Card title={<span>TestApp.apk</span>}>
                   <Source {...this.props} />
                 </Card>
               </div>
-              <div id='selectedElementContainer' style={{overflowY:"scroll",height:"600px",marginLeft:"-12px"}}
+              <div id='selectedElementContainer'
                 className='interaction-tab-container element-detail-container action-col'>
-                <Card title={<span><TagOutlined /> {('Selected Element')}</span>}
+                <Card title={<span>{('PROPERTIES TABLE')}</span>}
                   className='selected-element-card'>
                   {path && <SelectedElement {...this.props}/>}
                   {!path && <i>{('selectElementInSource')}</i>}

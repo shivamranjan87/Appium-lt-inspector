@@ -12,15 +12,6 @@
   width: 100%;
   height: 50px;
   margin-bottom: 12px;
-  background: linear-gradient(
-    180deg,
-    #e2e2e2,
-    #e0e0e0,
-    10%,
-    #d6d6d6,
-    50%,
-    #cacaca
-  );
   border-top: 1px solid #f5f4f5;
   border-bottom: 1px solid #a5a4a5;
   -webkit-app-region: drag;
@@ -81,7 +72,7 @@
 }
 
 .inspector-main .ant-card-head {
-  max-height: 48px;
+  min-height: 36px !important;
 }
 
 .inspector-main .ant-card-body {
@@ -227,7 +218,7 @@
   overflow: auto;
 }
 
-.sourceTag {
+/* .sourceTag {
   color: #7d2020;
   font-weight: normal;
 }
@@ -235,7 +226,7 @@
 .sourceAttrName {
   color: #864da1;
   font-style: italic;
-}
+} */
 
 .no-recorded-actions {
   font-style: italic;
@@ -401,15 +392,17 @@
 }
 
 .ant-card-head {
-  min-height: 48px;
-  margin-bottom: -1px;
-  padding: 0 24px;
-  color: rgba(0, 0, 0, 0.85);
-  font-weight: 500;
-  font-size: 14px;
-  background: transparent;
-  border-bottom: 1px solid #f0f0f0;
-  border-radius: 2px 2px 0 0;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    min-height: 48px;
+    margin-bottom: -1px;
+    padding: 0 24px;
+    margin-left: -24px;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 2px 2px 0 0;
+    background: #eee !important;
 }
 
 .ant-card {
@@ -488,12 +481,18 @@
 }
 
 .ant-card-head-title {
-    display: inline-block;
-    flex: 1;
-    padding: 16px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    width: 150px;
+    height: 17px;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #4a4a4a;
+    padding: 0px !important;
+    margin-left: 12px;
 }
 
 .ant-card-head-wrapper {
@@ -513,17 +512,70 @@
     -webkit-font-smoothing: antialiased;
 }
 
-.ant-card-head {
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-    min-height: 48px;
-    margin-bottom: -1px;
-    padding: 0 24px;
-    margin-left: -24px;
-    color: rgba(0,0,0,.85);
-    font-weight: 500;
-    font-size: 14px;
-    background: transparent;
-    border-bottom: 1px solid #f0f0f0;
-    border-radius: 2px 2px 0 0;
+.ant-spin-container{
+    background: #fff;
 }
+
+.ant-tabs-tab-btn{
+    outline: none;
+    transition: all 0.3s;
+    height: 15px;
+    /* width: 65px; */
+    /* height: 15px; */
+    /* margin: 12px 431.5px 9px 5.5px; */
+     font-family: Lato !important;
+    /* font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal; */
+    line-height: normal;
+    /* letter-spacing: normal; */
+    color: #4a4a4a !important;
+    text-shadow: none !important;
+}
+
+.ant-tabs-ink-bar {
+    position: absolute;
+    background: #fff !important;
+    pointer-events: none;
+}
+
+.selected-element-table-cells{
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.92;
+    letter-spacing: normal;
+    color: #4a4a4a;
+}
+
+.ant-tree-list-holder{
+    font-family: AndaleMono;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5 !important;
+    letter-spacing: -0.2px;
+    color: #4a4a4a;
+}
+
+.ant-tabs-content-holder{
+    margin-top: -11px;
+}
+
+.ant-tabs-tab {
+    color: #4a4a4a;
+    margin-left: 11px;
+}
+
+.ant-card-head{
+    display: flex;
+    align-items: center;
+}
+
+
+
 

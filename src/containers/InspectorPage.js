@@ -11,6 +11,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(InspectorActions, dispatch);
 }
+console.log("in inspector page")
 
 // function mapDispacthToProps (dispatch) {
 //     return {getScreenshotData: () => dispatch(getScreenshotData())}

@@ -193,11 +193,11 @@ class SelectedElement extends Component {
     }
 
     return <div>
-      {elementInteractionsNotAvailable && <Row type={ROW.FLEX} gutter={10}>
+      {/* {elementInteractionsNotAvailable && <Row type={ROW.FLEX} gutter={10}>
         <Col>
           <Alert type={ALERT.INFO} message={('Interactions are not available for this element')} showIcon />
         </Col>
-      </Row>}
+      </Row>} */}
       {findDataSource.length > 0 &&
         <Row>
           <Table
